@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Noto+Serif:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Noto Serif', serif;
 }
 
 .navbar {
@@ -61,4 +64,34 @@
 main {
     height: 100vh;
     background-color: #F4F4F4;
+}
+
+.banner {
+    height: 60vh;
+    max-width: 100%;
+    background-image: url(../images/festival.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 85%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.banner-title {
+    font-size: 7rem;
+    font-family: 'Fugaz One', cursive;
+    color: #fff;
+    z-index: 1;
 }
