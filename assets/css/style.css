@@ -156,7 +156,16 @@ main {
     background-color: #D90368;
     border: none;
     border-radius: 5px;
+    transition: all .2s ease-out;
 }
+
+.searchBar-btn:hover {
+    transform: scale(1.05);
+    background-color: #FC3290;
+    cursor: pointer;
+}
+
+/* Eventos */
 
 .galleryEvent {
     height: 70vh;
@@ -224,7 +233,16 @@ main {
     color: #fff;
     border: none;
     border-radius: 5px;
+    transition: all .2s ease-out;
 }
+
+.cardEvent-footer > button:hover {
+    transform: scale(1.05);
+    background-color: #FC3290;
+    cursor: pointer;
+}
+
+/* footer */
 
 .footer {
     height: 4rem;
@@ -243,4 +261,10 @@ main {
 
 .footer-socialMedia > i {
     font-size: 1.5rem;
+    transition: all .2s ease-out;
+}
+
+.footer-socialMedia > i:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
