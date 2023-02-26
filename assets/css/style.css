@@ -369,3 +369,50 @@ main {
     font-weight: 700;
     color: #FC3290;
 }
+
+/* Stats */
+
+.statsTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 90vh;
+}
+
+table {
+    background-color: #272740;
+    width: 100%;
+    max-width: 90vw;
+    table-layout: auto;
+    border-spacing: 5px;
+    border-collapse: collapse;
+    
+}
+
+caption {
+    background-color: #D90368;
+    height: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: left;
+    padding: .5rem;
+}
+
+tr {
+    height: 1.5rem;
+}
+
+table, th, td {
+    border: 1px solid #1a1a2b;
+    text-align: center;
+    color: #fff;
+}
+
+th {
+    background-color: #1a1a2b;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
