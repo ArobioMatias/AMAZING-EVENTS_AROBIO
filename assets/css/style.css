@@ -67,9 +67,9 @@ main {
 }
 
 .banner {
-    height: 60vh;
+    height: 40vh;
     max-width: 100%;
-    background-image: url(../images/festival.jpg);
+    background-image: url(../images/festival2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 85%;
@@ -227,7 +227,7 @@ main {
     color: #D90368;
     
 }
-.cardEvent-footer > button {
+.cardEvent-footer button {
     padding: .3rem;
     background-color: #D90368;
     color: #fff;
@@ -236,7 +236,7 @@ main {
     transition: all .2s ease-out;
 }
 
-.cardEvent-footer > button:hover {
+.cardEvent-footer button:hover {
     transform: scale(1.05);
     background-color: #FC3290;
     cursor: pointer;
@@ -246,12 +246,12 @@ main {
 
 .footer {
     height: 4rem;
-    background-color: #D90368;
+    background-color: #1a1a2b;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 4rem;
-    color: #fff;
+    color: #D90368;
 }
 
 .footer-socialMedia {
@@ -266,5 +266,59 @@ main {
 
 .footer-socialMedia > i:hover {
     transform: scale(1.1);
+    cursor: pointer;
+    color: #FC3290;
+}
+
+/* contact */
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+.formContact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    padding: 20px;
+    background-color: #1a1a2b;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.formContact-entry {
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    outline: none;
+    border: 1px solid #1a1a2b;
+    border-radius: 5px;
+    padding: .3rem;
+    resize: none;
+}
+
+.formContact-entry:focus {
+    border: 1px solid #D90368;
+}
+
+.formContact-btn {
+    align-self: flex-end;
+    padding: .5rem;
+    color: #fff;
+    background-color: #D90368;
+    border-radius: 5px;
+    border: none;
+    transition: all .2s ease-out;
+}
+
+.formContact-btn:hover {
+    transform: scale(1.05);
+    background-color: #FC3290;
     cursor: pointer;
 }
