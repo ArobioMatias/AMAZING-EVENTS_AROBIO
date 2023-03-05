@@ -20,6 +20,16 @@
     height: 3rem
 }
 
+.menuButton-icon{
+    font-size: 2rem;
+    color: #D90368;
+    border-radius: 2px;
+}
+
+.menuButton-icon, #check{
+    display: none;
+}
+
 .navBar-navigation {
     display: flex;
     gap: 1.5rem;
@@ -106,6 +116,10 @@ main {
     font-size: 1rem;
     color: #484848;
     flex-wrap: wrap;
+}
+
+#checkFilters, .checkFilterBtn {
+    display: none;
 }
 
 .form-filters {
@@ -433,12 +447,33 @@ th {
 @media screen and (max-width: 480px) {
     .navBar{
         height: auto;
+        padding: 0.5rem 1rem;
+    }
+
+    .checkBtn, .menuButton-icon{
+        display: block;
     }
 
     .navBar-navigation {
+        padding: 2rem .5rem;
+        top: 4rem;
         width: 100%;
         flex-direction: column;
         align-items: center;
+        position: fixed;
+        height: 100vh;
+        gap: 2rem;
+        left: -100%;
+        justify-content: flex-start;
+        background-color: #F4F4F4;
+        z-index: 20;
+        right: 0;
+        transition: all .25s;
+        font-size: 1.2rem;
+    }
+
+    #check:checked ~ .navBar-navigation {
+        left: 0;
     }
 
     .banner-title {
@@ -450,10 +485,51 @@ th {
         height: auto;
     }
 
+    .filtersBtn {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: .5rem .75rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        color: #D90368;
+        border-radius: 3px;
+        order: 2;
+        border: 1px solid #A9A9A9;
+    }
+
+    .checkFilterBtn{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #checkFilters:checked ~ .form-filters {
+        display: flex;
+    }
+
     .form-filters {
         flex-direction: column;
         width: 100%;
         padding: 1rem;
+        display: none;
+        transition: all .25s ease-out;
+        order: 3;
+    }
+
+    .form-check-label {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-check-input{
+        order: 2;
+    }
+
+    .form-searchBar {
+        width: 100%;
+        margin-top: 2rem;
+        order: 1;
     }
 
     .galleryEvent{
@@ -465,6 +541,20 @@ th {
         padding: 2rem;
     }
 
+    .formContainer {
+        height: auto;
+        padding: 1.5rem 0;
+    }
+
+    .formContact {
+        width: 90%;
+    }
+
+    .statsTable {
+        height: auto;
+        padding: 1.5rem 0;
+    }
+
     caption {
         font-size: 1rem;
     }
@@ -473,6 +563,11 @@ th {
         font-size: .75rem
         ;
     }
+}
+
+.eventDetails {
+    height: auto;
+    padding: 2.35rem 1.5rem;
 }
 
 .cardDetail {
