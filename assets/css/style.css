@@ -7,6 +7,10 @@
     font-family: 'Noto Serif', serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 .navBar {
     display: flex;
     align-items: center;
@@ -159,7 +163,7 @@ main {
 }
 
 .searchBar-entry {
-    height: 100%;
+    height: 2rem;
     border: 1px solid #A9A9A9;
     border-radius: 5px;
     font-size: 1rem;
@@ -176,8 +180,8 @@ main {
 }
 
 .searchBar-btn {
-    height: 100%;
-    width: 1.75rem;
+    height: 2rem;
+    width: 2rem;
     color: #fff;
     background-color: #D90368;
     border: none;
@@ -199,6 +203,7 @@ main {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 3rem 4rem;
+    row-gap: 3rem;
 }
 
 .cardEvent {
@@ -253,10 +258,15 @@ main {
     color: #D90368;
     
 }
-.cardEvent-footer button {
-    padding: .3rem;
-    background-color: #D90368;
+
+.cardEvent-footer a {
     color: #fff;
+    display: inline-block;
+    padding: .3rem .4rem;
+}
+
+.cardEvent-footer button {
+    background-color: #D90368;
     border: none;
     border-radius: 5px;
     transition: all .2s ease-out;
@@ -285,12 +295,13 @@ main {
     gap: 2rem;
 }
 
-.footer-socialMedia > i {
+.socialMedia-icon {
     font-size: 1.5rem;
     transition: all .2s ease-out;
+    color: #D90368;
 }
 
-.footer-socialMedia > i:hover {
+.socialMedia-icon:hover {
     transform: scale(1.1);
     cursor: pointer;
     color: #FC3290;
@@ -443,8 +454,7 @@ th {
     padding-bottom: 5px;
     padding-top: 5px;
 }
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 950px){
     .navBar{
         height: auto;
         padding: 0.5rem 1rem;
@@ -479,22 +489,15 @@ th {
     .banner-title {
         font-size: 4rem;
     }
-    
-    .form {
-        flex-direction: column;
-        height: auto;
-    }
 
     .filtersBtn {
         display: flex;
         align-items: center;
-        width: 100%;
-        padding: .5rem .75rem;
-        margin-top: 1rem;
+        width: 247px;
+        padding: .4rem .75rem;
         background-color: #fff;
         color: #D90368;
         border-radius: 3px;
-        order: 2;
         border: 1px solid #A9A9A9;
     }
 
@@ -508,18 +511,60 @@ th {
         display: flex;
     }
 
+    .form {
+        align-items: center;
+    }
+
     .form-filters {
+        position: absolute;
         flex-direction: column;
-        width: 100%;
+        width: 247px;
         padding: 1rem;
         display: none;
         transition: all .25s ease-out;
-        order: 3;
+        background-color: #fff;
+        border: 1px solid #A9A9A9;
     }
 
     .form-check-label {
         display: flex;
         justify-content: space-between;
+    }
+
+    .formContainer {
+        height: auto;
+    }
+
+    .formContact {
+        margin: 3rem 0;
+    }
+
+    .statsTable {
+        height: auto;
+        padding: 1.5rem 0;
+    }
+
+    .eventDetails {
+        height: 88vh;
+    }
+    .cardDetail {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 480px) {    
+    .form {
+        flex-direction: column;
+        height: auto;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .filters {
+        order: 2;
+    }
+
+    .filtersBtn {
+        order: 2;
     }
 
     .form-check-input{
@@ -528,8 +573,8 @@ th {
 
     .form-searchBar {
         width: 100%;
-        margin-top: 2rem;
         order: 1;
+        justify-content: center;
     }
 
     .galleryEvent{
@@ -550,11 +595,6 @@ th {
         width: 90%;
     }
 
-    .statsTable {
-        height: auto;
-        padding: 1.5rem 0;
-    }
-
     caption {
         font-size: 1rem;
     }
@@ -563,18 +603,19 @@ th {
         font-size: .75rem
         ;
     }
+
+    .eventDetails {
+        height: auto;
+        padding: 2.35rem 1.5rem;
+    }
+    
+    .cardDetail {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .cardDetail-image, .cardDetail-text {
+        width: 100%;
+    }
 }
 
-.eventDetails {
-    height: auto;
-    padding: 2.35rem 1.5rem;
-}
-
-.cardDetail {
-    flex-direction: column;
-    height: auto;
-}
-
-.cardDetail-image, .cardDetail-text {
-    width: 100%;
-}
