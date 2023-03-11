@@ -1,23 +1,6 @@
 const galleryEvents = document.querySelector('.galleryEvent');
+const contenedorFiltros = document.querySelector(".form-filters");
 
 drawCards(data.events, galleryEvents);
+drawCategories(getCategories(data.events), contenedorFiltros)
 
-function drawCards(arrayCards, cardsContainer) {
-    let cards = "";
-    for (const card of arrayCards) {
-        cards += `<div class="cardEvent">
-        <figure class="cardEvent-img">
-            <img src="${card.image}" alt="Personas en un cine">
-        </figure>
-        <div class="cardEvent-text">
-            <h3>${card.name}</h3>
-            <p>${card.description}</p>
-        </div>
-        <div class="cardEvent-footer">
-            <p>Price: $${card.price}</p>
-            <button><a href="./details.html">See More</a></button>
-        </div>
-    </div>`;
-    }
-    cardsContainer.innerHTML = cards;
-}
