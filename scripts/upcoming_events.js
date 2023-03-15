@@ -1,7 +1,12 @@
-const galleryEvents = document.querySelector('.galleryEvent');
-const contenedorFiltros = document.querySelector(".form-filters");
+let upcomingEvents = data.events.filter((event) => data.currentDate < event.date)
 
-upcomingEvents = data.events.filter((event) => data.currentDate < event.date)
+drawCards(upcomingEvents)
+drawCategories(getCategories(data.events))
 
-drawCards(upcomingEvents, galleryEvents);
-drawCategories(getCategories(data.events), contenedorFiltros)
+filterContainer.addEventListener('change', () => {
+    crossFilter(upcomingEvents)
+})
+searchBar.addEventListener('input', () => {
+    crossFilter(upcomingEvents)
+})
+

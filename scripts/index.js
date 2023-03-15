@@ -1,6 +1,11 @@
-const galleryEvents = document.querySelector('.galleryEvent');
-const contenedorFiltros = document.querySelector(".form-filters");
+drawCards(data.events)
+drawCategories(getCategories(data.events))
 
-drawCards(data.events, galleryEvents);
-drawCategories(getCategories(data.events), contenedorFiltros)
+
+filterContainer.addEventListener('change', () => {
+    crossFilter(data.events)
+})
+searchBar.addEventListener('input', () => {
+    crossFilter(data.events)
+})
 

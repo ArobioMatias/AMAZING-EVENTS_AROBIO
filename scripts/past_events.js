@@ -1,7 +1,12 @@
-const galleryEvents = document.querySelector('.galleryEvent')
-const contenedorFiltros = document.querySelector(".form-filters");
+let pastEvents = data.events.filter((event) => data.currentDate > event.date)
 
-pastEvents = data.events.filter((event) => data.currentDate > event.date)
+drawCards(pastEvents)
+drawCategories(getCategories(data.events))
 
-drawCards(pastEvents, galleryEvents)
-drawCategories(getCategories(data.events), contenedorFiltros)
+filterContainer.addEventListener('change', () => {
+    crossFilter(pastEvents)
+})
+searchBar.addEventListener('input', () => {
+    crossFilter(pastEvents)
+})
+
