@@ -14,7 +14,7 @@ function drawCards(arrayCards) {
         </div>
         <div class="cardEvent-footer">
             <p>Price: $${card.price}</p>
-            <button><a href="./details.html">See More</a></button>
+            <button><a href="./details.html?id=${card._id}">See More</a></button>
         </div>
     </div>`
     }, "")
