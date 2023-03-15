@@ -1,9 +1,9 @@
 const querySearch = location.search
 const id = new URLSearchParams(querySearch).get("id")
-const selectedEvent = data.events.find(event => event._id == id)
+const selectedEvent = data.events.find(event => event._id == id) 
 const cardDetailContainer = document.querySelector(".eventDetails")
 
-cardDetailContainer.innerHTML = `<article class="cardDetail">
+cardDetailContainer.innerHTML = `<article class="cardDetail"> 
 <figure class="cardDetail-image">
     <img src="${selectedEvent.image}" alt="imagen de ${selectedEvent.name}">
 </figure>

@@ -7,6 +7,12 @@
     font-family: 'Noto Serif', serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 a {
     text-decoration: none;
 }
@@ -283,13 +289,15 @@ main {
 /* footer */
 
 .footer {
-    height: 4rem;
+    min-height: 4rem;
     background-color: #1a1a2b;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4rem;
+    padding: 1rem 4rem;
     color: #D90368;
+    margin-top: auto;
+    flex-wrap: wrap;
 }
 
 .footer-socialMedia {
@@ -626,3 +634,9 @@ th {
     }
 }
 
+@media screen and (max-width: 380px) {
+    .footer {
+        flex-direction: column;
+        align-content: center;
+    }
+}
