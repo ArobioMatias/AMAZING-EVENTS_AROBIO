@@ -200,10 +200,10 @@ main {
 .galleryEvent {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 3rem 4rem;
-    row-gap: 3rem;
+    gap: 3rem 3rem;
 }
 
 .cardEvent {
