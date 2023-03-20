@@ -1,12 +1,11 @@
-let upcomingEvents = data.events.filter((event) => data.currentDate < event.date)
+drawScreen("upcoming")
 
-drawCards(upcomingEvents)
-drawCategories(getCategories(data.events))
-
-filterContainer.addEventListener('change', () => {
-    crossFilter(upcomingEvents)
+filterContainer.addEventListener('change', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(getUpcomingEvents(response)) 
 })
-searchBar.addEventListener('input', () => {
-    crossFilter(upcomingEvents)
+searchBar.addEventListener('input', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(getUpcomingEvents(response)) 
 })
 

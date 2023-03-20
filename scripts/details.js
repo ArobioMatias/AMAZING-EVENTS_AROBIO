@@ -1,9 +1,13 @@
 const querySearch = location.search
 const id = new URLSearchParams(querySearch).get("id")
-const selectedEvent = data.events.find(event => event._id == id) 
 const cardDetailContainer = document.querySelector(".eventDetails")
+drawCardDetail()
 
-cardDetailContainer.innerHTML = `<article class="cardDetail"> 
+async function drawCardDetail() {
+    const response = await getDataFromAPI()
+    const selectedEvent = response.events.find(event => event._id == id)
+
+    cardDetailContainer.innerHTML = `<article class="cardDetail"> 
 <figure class="cardDetail-image">
     <img src="${selectedEvent.image}" alt="imagen de ${selectedEvent.name}">
 </figure>
@@ -33,3 +37,4 @@ cardDetailContainer.innerHTML = `<article class="cardDetail">
     
 </div>
 </article>`
+}

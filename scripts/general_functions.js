@@ -62,3 +62,37 @@ function crossFilter(events){
     let cardsFiltered2 = filterByText(cardsFiltered1)
     drawCards(cardsFiltered2)
 }
+
+async function drawScreen(temporality){
+    const response = await getDataFromAPI()
+    if(temporality == "past"){
+        drawCards(getPastEvents(response))
+    }
+    if(temporality == "upcoming"){
+        drawCards(getUpcomingEvents(response))
+    }
+    if(temporality == "all"){
+        drawCards(response.events)
+    }
+    drawCategories(getCategories(response.events))
+}
+
+async function getDataFromAPI(){
+    try {
+        const response = await fetch('https://mindhub-xj03.onrender.com/api/amazing')
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function getPastEvents(data) {
+    const pastEvents = data.events.filter(event => data.currentDate > event.date)
+    return pastEvents
+}
+
+function getUpcomingEvents(data) {
+    const upcomingEvents = data.events.filter(event => data.currentDate < event.date)
+    return upcomingEvents
+}

@@ -1,11 +1,12 @@
-drawCards(data.events)
-drawCategories(getCategories(data.events))
+drawScreen("all")
 
+filterContainer.addEventListener('change', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(response.events) 
+})
+searchBar.addEventListener('input', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(response.events) 
+})
 
-filterContainer.addEventListener('change', () => {
-    crossFilter(data.events)
-})
-searchBar.addEventListener('input', () => {
-    crossFilter(data.events)
-})
 

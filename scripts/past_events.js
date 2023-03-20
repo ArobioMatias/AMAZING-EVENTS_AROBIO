@@ -1,12 +1,11 @@
-let pastEvents = data.events.filter((event) => data.currentDate > event.date)
+drawScreen("past")
 
-drawCards(pastEvents)
-drawCategories(getCategories(data.events))
-
-filterContainer.addEventListener('change', () => {
-    crossFilter(pastEvents)
+filterContainer.addEventListener('change', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(getPastEvents(response)) 
 })
-searchBar.addEventListener('input', () => {
-    crossFilter(pastEvents)
+searchBar.addEventListener('input', async () => {
+    const response = await getDataFromAPI()
+    crossFilter(getPastEvents(response)) 
 })
 
