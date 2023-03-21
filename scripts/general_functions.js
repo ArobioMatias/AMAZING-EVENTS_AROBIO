@@ -3,6 +3,13 @@ const filterContainer = document.querySelector(".form-filters")
 const searchBar = document.querySelector('.searchBar-entry')
 
 function drawCards(arrayCards) {
+    if(arrayCards.length == 0){
+        cardsContainer.innerHTML = `<div class="SearchResults">
+        <div class="SearchResults-img"></div>
+        <h3 class="SearchResults-title">No results found.</h3>
+    </div>`
+    return
+    }
     const cards = arrayCards.reduce((acc, card) => {
         return acc + `<div class="cardEvent">
         <figure class="cardEvent-img">
