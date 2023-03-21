@@ -11,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #F4F4F4;
 }
 
 a {
@@ -23,6 +24,7 @@ a {
     justify-content: space-between;
     padding: .5rem 2rem;
     flex-wrap: wrap;
+    background-color: #fff;
 }
 
 .navBar-icon,
@@ -80,10 +82,6 @@ a {
 
 .active {
     color: #D90368;
-}
-
-main {
-    background-color: #F4F4F4;
 }
 
 .banner {

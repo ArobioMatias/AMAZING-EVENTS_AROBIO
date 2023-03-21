@@ -6,21 +6,20 @@ drawTableStatistic()
 
 async function drawTableStatistic() {
     const response = await getDataFromAPI()
+    const pastEvents = getPastEvents(response)
     let row = document.createElement('tr')
     let cellMostAttendance = document.createElement('td')
     let cellLessAttendance =  document.createElement('td')
     let cellLargerCapacity = document.createElement('td')
 
-    cellMostAttendance.innerText = `${getMostAttendedEvent(response.events).name} (${getMostAttendedEvent(response.events).percentageAttendace}%)`
-    cellLessAttendance.innerText = `${getlessAttendedEvent(response.events).name} (${getlessAttendedEvent(response.events).percentageAttendace}%)`
-    cellLargerCapacity.innerHTML = `${getLargestCapacityEvent(response.events)[0].name} (${getLargestCapacityEvent(response.events)[0].capacity})`
+    cellMostAttendance.innerText = `${getMostAttendedEvent(pastEvents).name} (${getMostAttendedEvent(pastEvents).percentageAttendace}%)`
+    cellLessAttendance.innerText = `${getlessAttendedEvent(pastEvents).name} (${getlessAttendedEvent(pastEvents).percentageAttendace}%)`
+    cellLargerCapacity.innerHTML = `${getLargestCapacityEvent(pastEvents)[0].name} (${getLargestCapacityEvent(pastEvents)[0].capacity})`
 
     row.appendChild(cellMostAttendance)
     row.appendChild(cellLessAttendance)
     row.appendChild(cellLargerCapacity)
     tableEventsStatistic.appendChild(row)
-    /////////////////////////////////////////////////////////////////
-    
 }
 
 function getMostAttendedEvent(events){
@@ -83,7 +82,7 @@ async function drawStatisticByCategory(){
     drawStatistic(pastEvents, categories, tablePastEventStatistic)
 }
 
-async function drawStatistic(events, categories, table){
+function drawStatistic(events, categories, table){
     categories.forEach(element => {
         let revenues = 0
         let percentageAttendance = 0
