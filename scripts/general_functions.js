@@ -85,21 +85,44 @@ async function drawScreen(temporality){
 }
 
 async function getDataFromAPI(){
+    let response
     try {
-        const response = await fetch('https://mindhub-xj03.onrender.com/api/amazing')
-        const data = await response.json()
-        return data
+        response = await fetch('https://mindhub-xj03.onrender.com/api/amazing')
+        return await response.json()
+
     } catch (error) {
-        console.log(error)
+        response = await fetch('/scripts/amazing.json')
+        return await response.json()
     }
 }
 
 function getPastEvents(data) {
-    const pastEvents = data.events.filter(event => data.currentDate > event.date)
-    return pastEvents
+    return data.events.filter(event => data.currentDate > event.date)
 }
 
 function getUpcomingEvents(data) {
-    const upcomingEvents = data.events.filter(event => data.currentDate < event.date)
-    return upcomingEvents
+    return data.events.filter(event => data.currentDate < event.date)
+}
+
+function orderBy(array, property){
+    return array.sort((a,b)=>{
+        if(a[property] > b[property]){
+            return -1
+        }
+        if(a[property] < b[property]){
+            return 1
+        }
+        return 0
+    })
+}
+
+function getHigherAndLower(array){
+    const extremes = {higher: 0, lower: 0}
+    extremes.higher = array[0]
+    extremes.lower = array[array.length-1]
+    return extremes
+}
+
+function percentage(amount, total){
+    return ((amount*100)/total).toFixed(2)
 }

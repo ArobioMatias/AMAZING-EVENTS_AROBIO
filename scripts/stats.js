@@ -2,96 +2,34 @@ const tableEventsStatistic = document.getElementById('eventsStatistics')
 const tableUpcomingEventsStatistics = document.getElementById('upcomingEventsStatistics')
 const tablePastEventStatistic = document.getElementById('pastEventStatistic')
 
-drawTableStatistic()
+fillStatisticsTable()
 
-async function drawTableStatistic() {
+async function fillStatisticsTable() {
     const response = await getDataFromAPI()
     const pastEvents = getPastEvents(response)
+    const upcomingEvents = getUpcomingEvents(response)
+    const categories = getCategories(response.events)
+    
+    fillEventStatistic(pastEvents)
+    fillStatisticByCategory(upcomingEvents, categories, tableUpcomingEventsStatistics)
+    fillStatisticByCategory(pastEvents, categories, tablePastEventStatistic)   
+}
+
+function fillEventStatistic(events){
+    let contentMostAttendance = `${getMostAttendedEvent(events).name} (${getMostAttendedEvent(events).percentageAttendace}%)`
+    let contentLessAttendance = `${getlessAttendedEvent(events).name} (${getlessAttendedEvent(events).percentageAttendace}%)`
+    let contentLargerCapacity = `${getLargestCapacityEvent(events).name} (${getLargestCapacityEvent(events).capacity})`
     let row = document.createElement('tr')
-    let cellMostAttendance = document.createElement('td')
-    let cellLessAttendance =  document.createElement('td')
-    let cellLargerCapacity = document.createElement('td')
 
-    cellMostAttendance.innerText = `${getMostAttendedEvent(pastEvents).name} (${getMostAttendedEvent(pastEvents).percentageAttendace}%)`
-    cellLessAttendance.innerText = `${getlessAttendedEvent(pastEvents).name} (${getlessAttendedEvent(pastEvents).percentageAttendace}%)`
-    cellLargerCapacity.innerHTML = `${getLargestCapacityEvent(pastEvents)[0].name} (${getLargestCapacityEvent(pastEvents)[0].capacity})`
-
-    row.appendChild(cellMostAttendance)
-    row.appendChild(cellLessAttendance)
-    row.appendChild(cellLargerCapacity)
+    addNewCell(row, contentMostAttendance)
+    addNewCell(row, contentLessAttendance)
+    addNewCell(row, contentLargerCapacity)
     tableEventsStatistic.appendChild(row)
 }
 
-function getMostAttendedEvent(events){
-    return getMaxAndMin(events)[0]
-}
-
-function getlessAttendedEvent(events){
-    return getMaxAndMin(events)[1]
-}
-
-function getLargestCapacityEvent(events){
-    return events.sort((a,b)=>{
-        if(a.capacity > b.capacity){
-            return -1
-        }
-        if(a.capacity < b.capacity){
-            return 1
-        }
-        return 0
-    })
-}
-
-function getMaxAndMin(array){
-    const maxAndMin = []
-    const reduceEvents = array.map(event => {
-        let reducedEvent = {}
-        reducedEvent.name = event.name 
-        reducedEvent.percentageAttendace = Number(percentage(event.assistance || event.estimate, event.capacity))
-        return reducedEvent
-    }); 
-
-    reduceEvents.sort((a,b)=>{
-        if(a.percentageAttendace > b.percentageAttendace){
-            return -1
-        }
-        if(a.percentageAttendace < b.percentageAttendace){
-            return 1
-        }
-        return 0
-    })
-    maxAndMin.push(reduceEvents[0])
-    maxAndMin.push(reduceEvents[reduceEvents.length-1])
-    return maxAndMin
-}
-
-function percentage(amount, total){
-    return ((amount*100)/total).toFixed(2)
-}
-
-drawStatisticByCategory()
-
-
-async function drawStatisticByCategory(){
-    const response = await getDataFromAPI()
-    const upcomingEvents = getUpcomingEvents(response)
-    const pastEvents = getPastEvents(response)
-    console.log(pastEvents)
-    const categories = getCategories(response.events)
-    drawStatistic(upcomingEvents, categories, tableUpcomingEventsStatistics)
-    drawStatistic(pastEvents, categories, tablePastEventStatistic)
-}
-
-function drawStatistic(events, categories, table){
+function fillStatisticByCategory(events, categories, table){
     categories.forEach(element => {
-        let revenues = 0
-        let percentageAttendance = 0
-        let totalCapacity = 0
-        let totalEstimate = 0
-        let row = document.createElement('tr')
-        let cellCategory = document.createElement('td')
-        let cellRenenues = document.createElement('td')
-        let cellPercentageAttendance = document.createElement('td')
+        let revenues = 0, percentageAttendance = 0,totalCapacity = 0,totalEstimate = 0
         let empty = true
 
         events.forEach(event => {
@@ -106,15 +44,48 @@ function drawStatistic(events, categories, table){
         percentageAttendance = (totalEstimate*100)/totalCapacity
 
         if(!empty){
-            cellCategory.innerText = element
-            cellRenenues.innerText = `$${revenues}`
-            cellPercentageAttendance.innerText = `${percentageAttendance.toFixed(2)}%`
+            let row = document.createElement('tr')
+            contentCategory = element
+            contentRenenues = `$${revenues}`
+            contentPercentageAttendance = `${percentageAttendance.toFixed(2)}%`
     
-            row.appendChild(cellCategory)
-            row.appendChild(cellRenenues)
-            row.appendChild(cellPercentageAttendance)
+            addNewCell(row, contentCategory)
+            addNewCell(row, contentRenenues)
+            addNewCell(row, contentPercentageAttendance)
             table.appendChild(row)
         }   
         
     })
 }
+
+function addNewCell(row, content){
+    let cell = document.createElement('td')
+    cell.innerText = content
+    row.appendChild(cell)
+}
+
+function getMostAttendedEvent(events){
+    return eventsHigherAndLowerAttendance(events).higher
+}
+
+function getlessAttendedEvent(events){
+    return eventsHigherAndLowerAttendance(events).lower
+}
+
+function getLargestCapacityEvent(events){
+    const orderedEvents = orderBy(events, "capacity")
+    return orderedEvents[0]
+}
+
+function eventsHigherAndLowerAttendance(events){
+    const reduceEvents = events.map(event => {
+        let reducedEvent = {}
+        reducedEvent.name = event.name 
+        reducedEvent.percentageAttendace = Number(percentage(event.assistance || event.estimate, event.capacity))
+        return reducedEvent
+    }); 
+
+    const orderedEvents = orderBy(reduceEvents, "percentageAttendace")
+    return getHigherAndLower(orderedEvents)
+}
+
